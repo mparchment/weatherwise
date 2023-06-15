@@ -24,7 +24,6 @@ export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&exclude=minutely,hourly&appid=${api_key}`
       axios.get(url)
         .then((response) => {
-          console.log("Data fetched: ", response.data);
           setLocationData(response.data);
         })
         .catch((error) => {

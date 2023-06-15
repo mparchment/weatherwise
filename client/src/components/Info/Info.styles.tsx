@@ -132,26 +132,131 @@ const ForecastBox = styled(WeatherInfoDiv)`
 const WindBox = styled(WeatherInfoDiv)`
   grid-area: 1 / 7 / 3 / 8;
   @media (max-width: 1366px) { order: 5; }
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  & > h1 {
+    margin-top: .625rem;
+    line-height: 100%;
+    font-size: 1.5rem;
+  }
+
+  & > p {
+    margin: 0;
+    font-size: 20px;
+  }
 `
 
 const CoverageBox = styled(WeatherInfoDiv)`
   grid-area: 3 / 7 / 5 / 8;
   @media (max-width: 1366px) { order: 6; }
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  & > h1 {
+    margin-top: .625rem;
+    line-height: 100%;
+    font-size: 1.5rem;
+  }
+
+  & > p {
+    margin: 0;
+    font-size: 20px;
+  }
 `
 
 const HumidityBox = styled(WeatherInfoDiv)`
   grid-area: 5 / 7 / 7 / 8;
   @media (max-width: 1366px) { order: 7; }
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  & > h1 {
+    margin-top: .625rem;
+    line-height: 100%;
+    font-size: 1.5rem;
+  }
+
+  & > p {
+    margin: 0;
+    font-size: 20px;
+  }
 `
 
 const AnimationBox = styled(WeatherInfoDiv)`
   grid-area: 3 / 1 / 7 / 5;
   @media (max-width: 1366px) { order: 1; }
+
+  & > h1 {
+    margin: .625rem;
+    line-height: 100%;
+
+    @media (max-width: 1366px) {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  & > h2 {
+    @media (max-width: 1366px) {
+      font-size: 1.5rem;
+    }
+  }
 `
 
 const ForecastTitle = styled.h1`
   font-size: 1.5rem;
   margin: 0 0 0 1rem;
+`
+
+const SideImage = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 67%;
+
+  & > img {
+    height: 5rem;
+  }
+`
+
+const Animation = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+
+  @media (max-width: 1366px) {
+    margin-bottom: 1rem;
+  }
+
+  & > div > h2 {
+    font-size: 4.5rem;
+    margin: 0 4rem 0 0;
+  }
+`
+
+const DesktopLottie = styled.span`
+  @media (max-width: 1366px) {
+    display: none;
+  }
+`
+
+const MobileLottie = styled.span`
+  @media (min-width: 1366px) {
+    display: none;
+  }
 `
 
 export {
@@ -168,5 +273,9 @@ export {
   WindBox,
   CoverageBox,
   HumidityBox,
-  AnimationBox
+  AnimationBox,
+  SideImage,
+  Animation,
+  DesktopLottie,
+  MobileLottie
 }
