@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
 
   html, body {
     margin: 0;
-    height: 100%;
+    height: 100vh;
     overflow: hidden;
     font-family: 'Bungee', sans-serif;
     -webkit-font-smoothing: antialiased;

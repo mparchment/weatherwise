@@ -24,6 +24,14 @@ const Info: React.FC = () => {
   const convertedSunrise: string = useConvertTimestamp(sunrise);
   const convertedSunset: string = useConvertTimestamp(sunset);
 
+  const firstDay = locationData?.daily[1] || null;
+  const secondDay = locationData?.daily[2] || null;
+  const thirdDay = locationData?.daily[3] || null;
+  const fourthDay = locationData?.daily[4] || null;
+  const fifthDay = locationData?.daily[5] || null;
+  const sixthDay = locationData?.daily[6] || null;
+  const seventhDay = locationData?.daily[7] || null;
+
   return (
     <WeatherContainer>
       <TemperatureBox>
@@ -53,6 +61,13 @@ const Info: React.FC = () => {
       </SunBox>
       <ForecastBox>
         <ForecastTitle>7-Day Forecast</ForecastTitle>
+        <Day forecastData={firstDay}/>
+        <Day forecastData={secondDay}/>
+        <Day forecastData={thirdDay}/>
+        <Day forecastData={fourthDay}/>
+        <Day forecastData={fifthDay}/>
+        <Day forecastData={sixthDay}/>
+        <Day forecastData={seventhDay}/>
       </ForecastBox>
       <WindBox />
       <CoverageBox />

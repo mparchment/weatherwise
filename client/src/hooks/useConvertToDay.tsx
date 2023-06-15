@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 
-const useConvertToDay = (timestamp: number): string => {
+const useConvertToDay = (timestamp: number | undefined): string => {
   const [day, setDay] = useState('');
 
   useEffect(() => {
-    const date = new Date(timestamp * 1000);
-    const dayOfWeek = dayOfWeekAsInteger(date.getDay());
-    setDay(dayOfWeek);
+    if (timestamp !== undefined) {
+      const date = new Date(timestamp * 1000);
+      const dayOfWeek = dayOfWeekAsInteger(date.getDay());
+      setDay(dayOfWeek);
+    }
   }, [timestamp]);
 
   return day;

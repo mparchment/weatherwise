@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
-const useConvertTemp = (tempKelvin: number | null): number => {
+const useConvertTemp = (tempKelvin: number | undefined): number => {
   const [convertedTemp, setConvertedTemp] = useState(0);
 
   useEffect(() => {
-    if (tempKelvin === null) {
+    if (tempKelvin === undefined) {
       setConvertedTemp(0);
     } else {
       const converted = Math.round((((tempKelvin - 273.15) * 9) / 5) + 32);

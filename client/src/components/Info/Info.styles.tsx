@@ -114,12 +114,18 @@ const SmallSunTitle = styled.h2`
 const ForecastBox = styled(WeatherInfoDiv)`
   grid-area: 1 / 5 / 7 / 7;
   padding: 0;
+
   @media (max-width: 1366px) { order: 4; }
+
   display: flex;
   flex-direction: column;
 
   & > div:nth-of-type(odd) {
     background-color: rgba(0, 0, 0, 0.25);
+  }
+
+  & > div {
+    flex-grow: 1;
   }
 `
 
