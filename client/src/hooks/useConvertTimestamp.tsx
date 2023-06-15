@@ -1,9 +1,14 @@
 import { useState, useEffect } from 'react';
 
-const useConvertTimestamp = (timestamp: number): string => {
+const useConvertTimestamp = (timestamp: number | null): string => {
   const [convertedTimestamp, setConvertedTimestamp] = useState('');
 
   useEffect(() => {
+    if (timestamp === null) {
+      setConvertedTimestamp('');
+      return;
+    }
+
     const date = new Date(timestamp * 1000);
     const hour = date.getHours();
     const minutes = date.getMinutes();

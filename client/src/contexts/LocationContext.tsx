@@ -1,62 +1,45 @@
-import { createContext } from 'react';
-import { LocationType } from '../types';
+import React, { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
+import { WeatherAPIResponse } from '../types';
 
-export type LocationContextType = {
-  location: LocationType | null;
-  setLocation: (location: LocationType | null) => void;
-  lon: number | null;
-  lat: number | null;
-  weather: string | null;
-  weatherDescription: string | null;
-  weatherIcon: string | null;
-  temp: number | null;
-  feelsLike: number | null;
-  temp_min: number | null;
-  temp_max: number | null;
-  pressure: number | null;
-  humidity: number | null;
-  visibility: number | null;
-  windSpeed: number | null;
-  windDeg: number | null;
-  clouds: number | null;
-  dt: number | null;
-  sysType: number | null;
-  sysId: number | null;
-  country: string | null;
-  sunrise: number | null;
-  sunset: number | null;
-  timezone: number | null;
-  id: number | null;
-  locationName: string | null;
-  cod: number | null;
+interface LocationContextInterface {
+  locationData: WeatherAPIResponse | null;
+  setLocationData: React.Dispatch<React.SetStateAction<WeatherAPIResponse | null>>;
+}
+
+const defaultLocationContext: LocationContextInterface = {
+  locationData: null,
+  setLocationData: () => { console.warn('No location context provider') }, 
 };
 
-export const LocationContext = createContext<LocationContextType>({
-  location: null,
-  setLocation: () => { console.log('setLocation function not yet available') },
-  lon: null,
-  lat: null,
-  weather: null,
-  weatherDescription: null,
-  weatherIcon: null,
-  temp: null,
-  feelsLike: null,
-  temp_min: null,
-  temp_max: null,
-  pressure: null,
-  humidity: null,
-  visibility: null,
-  windSpeed: null,
-  windDeg: null,
-  clouds: null,
-  dt: null,
-  sysType: null,
-  sysId: null,
-  country: null,
-  sunrise: null,
-  sunset: null,
-  timezone: null,
-  id: null,
-  locationName: null,
-  cod: null
-});
+export const LocationContext = createContext<LocationContextInterface>(defaultLocationContext);
+
+export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [locationData, setLocationData] = useState<WeatherAPIResponse | null>(null);
+
+  const api_key = "7336de3bafdfe94a226fa9f29cf6ae52";
+
+  const reqLocation = () => {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&exclude=minutely,hourly&appid=${api_key}`
+      axios.get(url)
+        .then((response) => {
+          console.log("Data fetched: ", response.data);
+          setLocationData(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data: ", error);
+        });
+    })
+  }
+
+  useEffect(() => {
+      reqLocation();
+  }, []);
+
+  return (
+    <LocationContext.Provider value={{ locationData, setLocationData }}>
+      {children}
+    </LocationContext.Provider>
+  );
+};

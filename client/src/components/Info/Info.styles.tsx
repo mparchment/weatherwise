@@ -52,7 +52,6 @@ const FeelsLikeTemperature = styled.p`
 
 const ActualTemperature = styled.p<{ convertedTemp: number }>`
   font-size: 6rem;
-  font-weight: bold;
   color: ${props => useReturnColor(props.convertedTemp)};
 
   &::before {
@@ -63,12 +62,65 @@ const ActualTemperature = styled.p<{ convertedTemp: number }>`
 const SunBox = styled(WeatherInfoDiv)`
   grid-area: 1 / 2 / 3 / 5;
   @media (max-width: 1366px) { order: 3; }
+  display: flex;
+  flex-direction: row;
+
+  & > div {
+    display: flex;
+    align-items: center;
+  }
+`
+
+const SunTitle = styled.h1`
+  text-align: center;
+  transform: rotate(180deg);
+  writing-mode: vertical-lr;
+  line-height: 100%;
+  font-size: 2rem;
+  margin-right: .625rem;
+
+  @media (max-width: 1366px) {
+    display: none;
+  }
+`
+
+const SunInfo = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & > img {
+      margin: 1rem;
+    }
+  }
+`
+
+const SmallSunTitle = styled.h2`
+  margin: 0;
+
+  @media (max-width: 1366px) {
+    font-size: 1.1rem;
+  }
 `
 
 const ForecastBox = styled(WeatherInfoDiv)`
   grid-area: 1 / 5 / 7 / 7;
   padding: 0;
   @media (max-width: 1366px) { order: 4; }
+  display: flex;
+  flex-direction: column;
+
+  & > div:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.25);
+  }
 `
 
 const WindBox = styled(WeatherInfoDiv)`
@@ -91,15 +143,24 @@ const AnimationBox = styled(WeatherInfoDiv)`
   @media (max-width: 1366px) { order: 1; }
 `
 
+const ForecastTitle = styled.h1`
+  font-size: 1.5rem;
+  margin: 0 0 0 1rem;
+`
+
 export {
-    WeatherContainer,
-    TemperatureBox,
-    ActualTemperature,
-    FeelsLikeTemperature,
-    SunBox,
-    ForecastBox,
-    WindBox,
-    CoverageBox,
-    HumidityBox,
-    AnimationBox
+  WeatherContainer,
+  TemperatureBox,
+  ActualTemperature,
+  FeelsLikeTemperature,
+  SunBox,
+  SunTitle,
+  SunInfo,
+  SmallSunTitle, 
+  ForecastBox,
+  ForecastTitle,
+  WindBox,
+  CoverageBox,
+  HumidityBox,
+  AnimationBox
 }
