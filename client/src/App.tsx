@@ -16,7 +16,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Splash loading={!locationData} />
+      <Splash loading={!showContent} />
       <div style={{ 
         opacity: showContent ? 1 : 0, 
         transition: 'opacity 4s cubic-bezier(0.25, 0.1, 0.25, 1)' 

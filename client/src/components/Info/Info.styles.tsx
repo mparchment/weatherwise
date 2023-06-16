@@ -244,6 +244,11 @@ const Animation = styled.div`
   & > div > h2 {
     font-size: 4.5rem;
     margin: 0 4rem 0 0;
+
+    @media (max-width: 1366px) {
+      font-size: 3rem;
+      margin: 0 2rem 1rem 0;
+    }
   }
 `
 
