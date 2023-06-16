@@ -8,7 +8,6 @@ const Splash: React.FC<SplashProps> = ({ loading }) => {
   const [displayText, setDisplayText] = useState('');
   const weatherwise = "Weatherwise";
   const [fade, setFade] = useState(false);
-  const fadeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let progressText = '';
@@ -18,22 +17,25 @@ const Splash: React.FC<SplashProps> = ({ loading }) => {
         progressText += weatherwise[i];
         setDisplayText(progressText);
         i++;
-      } else if (i === weatherwise.length) {
-        setFade(true);
-        setTimeout(() => {
-          setDisplayText('');
-          setFade(false);
-        }, 500);
-        clearInterval(interval);
       }
     }, 150);
 
     return () => clearInterval(interval);
-  }, [loading]);
+  }, []);
+
+  useEffect(() => {
+    if (!loading && displayText === weatherwise) {
+      setFade(true);
+      setTimeout(() => {
+        setDisplayText('');
+        setFade(false);
+      }, 500);
+    }
+  }, [loading, displayText]);
 
   if (loading || displayText) {
     return (
-      <div ref={fadeRef} style={{
+      <div style={{
         display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh',
         opacity: fade ? 0 : 1,
         transition: 'opacity 1s'
