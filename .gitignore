@@ -44,3 +44,4 @@ Thumbs.db
 */obj
 
 *.env
+*/node_modules

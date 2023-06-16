@@ -19,17 +19,18 @@ export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const api_key = "7336de3bafdfe94a226fa9f29cf6ae52";
 
-  const reqLocation = () => {
-    navigator.geolocation.getCurrentPosition((pos) => {
+  const reqLocation = async () => {
+    try {
+      const pos = await new Promise((resolve, reject) => 
+        navigator.geolocation.getCurrentPosition(resolve, reject)
+      ) as GeolocationPosition;
+
       const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&exclude=minutely,hourly&appid=${api_key}`
-      axios.get(url)
-        .then((response) => {
-          setLocationData(response.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching data: ", error);
-        });
-    })
+      const response = await axios.get(url);
+      setLocationData(response.data);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
   }
 
   useEffect(() => {
