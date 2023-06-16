@@ -12,30 +12,23 @@ const Splash: React.FC<SplashProps> = ({ loading }) => {
 
   useEffect(() => {
     let progressText = '';
-    if (loading) {
-      let i = 0;
-      const interval = setInterval(() => {
-        if (i < weatherwise.length) {
-          progressText += weatherwise[i];
-          setDisplayText(progressText);
-          i++;
-        } else {
-          clearInterval(interval);
-        }
-      }, 150);
-
-      return () => clearInterval(interval);
-    }
-
-    if (!loading) {
-      if (fadeRef.current) {
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i < weatherwise.length) {
+        progressText += weatherwise[i];
+        setDisplayText(progressText);
+        i++;
+      } else if (i === weatherwise.length) {
         setFade(true);
         setTimeout(() => {
           setDisplayText('');
           setFade(false);
         }, 500);
+        clearInterval(interval);
       }
-    }
+    }, 150);
+
+    return () => clearInterval(interval);
   }, [loading]);
 
   if (loading || displayText) {
