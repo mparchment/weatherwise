@@ -1,6 +1,6 @@
 ![Weatherwise Banner](./img/WW-Banner.png)
 
-Weatherwise is an application developed using React and TypeScript that leverages the OpenWeatherAPI to provide current and future weather forecasts based on the user's location or a manually entered location.
+Weatherwise is an application developed using React and TypeScript that leverages the OpenWeatherAPI to provide current and future weather forecasts based on location. To experience Weatherwise in action, you can visit the __[Weatherwise Demo](https://mparchment.github.io/weatherwise/)__.
 
 ![Full View of Weatherwise](./img/WW-Full.png)
 
