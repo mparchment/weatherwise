@@ -37,4 +37,4 @@ Weatherwise is an application developed using React and TypeScript that leverage
 - Addition of a feature to switch between Celsius and Fahrenheit temperature units.
 - Improve error handling, particularly for scenarios where data fetching fails.
 - Provide more customization options for users, such as changing themes.
-- Improve handling and security of API calls.
+- Improve handling and security of API calls - implement backend.
