@@ -18,7 +18,6 @@ export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [locationData, setLocationData] = useState<WeatherAPIResponse | null>(null);
 
   const api_key = import.meta.env.VITE_API_KEY;
-  console.log(api_key)
 
   const reqLocation = async () => {
     try {
