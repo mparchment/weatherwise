@@ -17,7 +17,8 @@ export const LocationContext = createContext<LocationContextInterface>(defaultLo
 export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [locationData, setLocationData] = useState<WeatherAPIResponse | null>(null);
 
-  const api_key = "7336de3bafdfe94a226fa9f29cf6ae52";
+  const api_key = import.meta.env.VITE_API_KEY;
+  console.log(api_key)
 
   const reqLocation = async () => {
     try {
